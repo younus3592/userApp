@@ -1,0 +1,70 @@
+﻿@using userApp.Models
+@model UserEditorModel
+@{
+    ViewBag.Title = "UserEditor";
+}
+
+<h2>User Editor</h2>
+
+<form>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(x => x.UserName)
+
+                @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(x => x.Password)
+
+                @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="empAge">Age</label>
+                @Html.TextBoxFor(x => x.Age, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="empAddress">Address</label>
+                @Html.TextAreaFor(x => x.Address, new { @class = "form-control", @rows = 2 })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.LabelFor(x => x.MobileNo)
+                @Html.TextBoxFor(x => x.MobileNo, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="empNationality">Nationality</label>
+                @Html.DropDownListFor(x => x.NationalityID, Model.NationalitiesList, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="empCompany">Company</label>
+                @Html.DropDownListFor(x => x.CompanyID, Model.CompaniesList, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-primary" onclick="employeeEditorApp.saveEmployeeDetails()" id="lnkSubmitDetails">Submit </a>
+</form>
+

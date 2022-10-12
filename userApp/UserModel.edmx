@@ -101,7 +101,6 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Age" Type="Int32" />
           <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="Byte" />
           <Property Name="NationalityID" Type="Int32" />
           <Property Name="CompanyID" Type="Int32" />
           <Property Name="MobileNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
@@ -156,6 +155,19 @@
           <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="NationalityName" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <EnumType Name="GenderTypesEnum" UnderlyingType="Int16">
+          <Member Name="Male" Value="1" />
+          <Member Name="Female" Value="2" />
+          <Member Name="Both" Value="3" />
+        </EnumType>
+        <EnumType Name="GenderTypeEnum">
+          <Member Name="Male" Value="1" />
+          <Member Name="Female" Value="2" />
+        </EnumType>
+        <EnumType Name="UserGenderTypesEnum" UnderlyingType="Int16">
+          <Member Name="Male" Value="1" />
+          <Member Name="Female" Value="2" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -186,7 +198,6 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="NationalityID" ColumnName="NationalityID" />
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
                 <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />

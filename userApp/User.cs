@@ -19,7 +19,6 @@ namespace userApp
         public string Password { get; set; }
         public Nullable<int> Age { get; set; }
         public string Address { get; set; }
-        public Nullable<byte> Gender { get; set; }
         public Nullable<int> NationalityID { get; set; }
         public Nullable<int> CompanyID { get; set; }
         public string MobileNo { get; set; }
