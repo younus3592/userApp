@@ -19,11 +19,28 @@ namespace userApp.Controllers
 
             return View(model);
         }
+        [HttpGet]
         public ActionResult UserEditor(int? userId)
         {
             UserEditorModel model = userService.PrepareUserEditorModel(userId);
 
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult UserEditor(UserEditorModel model)
+        {
+
+            userService.SaveUser(model);
+
+            return RedirectToAction("UsersList");
+        }
+
+        public ActionResult DeleteUser(int userId)
+        {
+            var isDeleted =  userService.DeleteUser(userId);
+
+            return Json(isDeleted, JsonRequestBehavior.AllowGet);
         }
     }
 }

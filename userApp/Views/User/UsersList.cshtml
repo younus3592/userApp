@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-6" style="margin-top: 10px">
             <div style="float: right">
-                @Html.ActionLink("Add New User", "UserEditor", "User", new { @class = "btn btn-primary" })
+                @Html.ActionLink("Add New User", "UserEditor",null, new { @class = "btn btn-primary" })
             </div>
         </div>
     </div>
@@ -28,14 +28,15 @@
                         <th>Mobile Number</th>
                         <th>Company</th>
                         <th>Nationality</th>
+                        <th></th>
                     </tr>
                 </thead>
-                <tbody id="tbody-employees-list">
+                <tbody id="tbody-users-list">
                     @if (Model.UsersList.Count > 0)
                     {
                         foreach (User user in Model.UsersList)
                         {
-                            <tr>
+                            <tr id="tr_@user.UserID">
                                 <td>@user.UserName</td>
                                 <td>@user.Age</td>
                                 <td>@user.Address</td>
@@ -52,6 +53,18 @@
                                         @user.Nationality.NationalityName
                                     }
                                 </td>
+                                <td>
+
+                                    @Html.ActionLink("Edit", "UserEditor", new { userId = user.UserID}, new { @class = "btn btn-primary" })
+
+                                    @*<a class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        Edit
+                                    </a>*@
+                                    <a class="btn btn-danger" onclick="usersApp.delete(@user.UserID)">
+                                       Delete
+                                    </a>
+                                </td>
                             </tr>
                         }
                     }
@@ -61,3 +74,33 @@
     </div>
 </div>
 
+
+<script>
+    var usersApp = {
+        delete: function (usersId) {
+
+            $.ajax({
+                url: "/User/DeleteUser",
+                type: "POST",
+                data: {
+                    userId: usersId
+                },
+                success: function (response) {
+
+                    if (response) {
+                        alert("User Deleted");
+                        $("#tbody-users-list").find("#tr_" + usersId).remove();
+
+                    } else {
+                        alert("Some error occured when deleting user");
+                    }
+
+                },
+                error: function () {
+                    alert("Some error occured when deleting user");
+                }
+            }
+            )
+        }
+    }
+</script>
